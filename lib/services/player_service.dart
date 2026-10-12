@@ -1288,6 +1288,52 @@ class PlayerService {
     await _sessionManager.syncRouteSelection(
       reason: 'audio engine preference changed',
     );
+    // Apply it now rather than on the next playback request.
+    //
+    // `_syncRouteSelection` deliberately only updates the *requested* mode while
+    // something is playing -- the engine is meant to attach on the next playback
+    // request. That is safe, but it made the setting look inert: nothing about
+    // the engine in use changed until the user paused and pressed play again.
+    await _reapplyEngineWhilePlaying(reason: 'output mode changed');
+  }
+
+  /// Re-attaches the engine the session now wants, without interrupting playback.
+  ///
+  /// Disposes the outgoing engine, builds the new one and restarts the current
+  /// track from where it was, so changing the output mode takes effect
+  /// immediately instead of silently waiting for the next play.
+  Future<void> _reapplyEngineWhilePlaying({required String reason}) async {
+    if (!Platform.isAndroid) return;
+    final song = currentSongNotifier.value;
+    if (song == null || !isPlayingNotifier.value) return;
+
+    final desired = _sessionManager.selectedMode;
+    if (_sessionManager.initializedMode == desired) return;
+
+    final position = positionNotifier.value;
+    _debugLog(
+      '[Engine] Re-applying ${desired.logLabel} while playing ($reason)',
+    );
+
+    await _enqueuePlaybackRequest(() async {
+      try {
+        await _ensureEngineReady(desired, song: song, reason: reason);
+        await _runWithSuppressedSequenceStateUpdates(() async {
+          await _playbackManager.playTrack(
+            song,
+            initialPosition: position,
+            autoPlay: true,
+          );
+        });
+        _ensurePositionSaveTimer();
+        await _refreshAudioOutputDiagnostics(
+          reason: 'engine re-applied while playing',
+          activeSong: song,
+        );
+      } catch (e) {
+        _debugLog('[Engine] Re-applying the engine while playing failed: $e');
+      }
+    });
   }
 
   Future<bool> isHiFiModeEnabled() async {
