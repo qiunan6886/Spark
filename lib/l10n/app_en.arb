@@ -1,0 +1,282 @@
+{
+  "@@locale": "en",
+  "appTitle": "Spark",
+  "@appTitle": {
+    "description": "Application name, shown in the task switcher and About screen."
+  },
+  "navHome": "Home",
+  "navLibrary": "Library",
+  "navSearch": "Search",
+  "navSettings": "Settings",
+  "greeting": "Hi",
+  "@greeting": {
+    "description": "Short greeting at the top of the home screen. Followed by the user name if one is known."
+  },
+  "greeting0": "Time for some good music",
+  "greeting1": "Let the music carry your day",
+  "greeting2": "Slow down. Play something.",
+  "greeting3": "Let the melody do the talking",
+  "greeting4": "Good music is worth the wait",
+  "greeting5": "This moment is yours",
+  "greeting6": "Hear the world differently",
+  "greeting7": "Every play is a fresh start",
+  "greeting8": "Settle in and listen well",
+  "greeting9": "Music is the best medicine",
+  "sectionCurated": "Curated & trending",
+  "dailyMix": "Daily mix",
+  "dailyMixSubtitle": "A fresh set each day · {count} tracks",
+  "@dailyMixSubtitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "forYou": "For you",
+  "forYouSubtitle": "From what you listen to · {count} tracks",
+  "@forYouSubtitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "forYouNoHistory": "Picks from Audius and Jamendo",
+  "recentlyPlayed": "Recently played",
+  "sectionNewest": "Newest releases",
+  "sectionMostPlayed": "Most played",
+  "filterEmptyTitle": "Nothing here yet",
+  "filterEmptyBody": "Try another filter, or play a few songs first.",
+  "sectionRecentlyAdded": "Recently added",
+  "seeAll": "See all",
+  "chipAll": "All",
+  "chipNewRelease": "New release",
+  "chipTrending": "Trending",
+  "chipFavorites": "Liked",
+  "songCount": "{count, plural, =0{No songs} =1{1 song} other{{count} songs}}",
+  "@songCount": {
+    "description": "Track count for an album or playlist row.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "songCountShort": "{count} songs",
+  "@songCountShort": {
+    "description": "Compact track count used in dense list rows.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "nowPlaying": "Now Playing",
+  "queue": "Queue",
+  "lyrics": "Lyrics",
+  "lyricsUnavailable": "No lyrics found for this track",
+  "myMusic": "My Music",
+  "playlists": "Playlists",
+  "likedSongs": "Liked Songs",
+  "likedEmptyBody": "Tap the heart on a song to save it here.",
+  "downloads": "Downloads",
+  "download": "Download",
+  "downloaded": "Saved to your music folder",
+  "downloadCachedOnly": "Saved for offline play",
+  "downloadFailed": "Download failed",
+  "downloadsEmptyTitle": "Nothing saved offline yet",
+  "downloadsEmptyBody": "Play a track from Audius or Jamendo and it is kept for offline listening.",
+  "removeDownload": "Remove download",
+  "refresh": "Refresh",
+  "cacheUsage": "Using {size}",
+  "@cacheUsage": {
+    "placeholders": {
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "cacheSettings": "Cache",
+  "cacheLimit": "Cache limit",
+  "cacheUnlimited": "No limit",
+  "cacheClear": "Clear cache",
+  "cacheClearConfirm": "Clear the cache? Downloads saved to your music folder are not affected.",
+  "cacheCleared": "Cache cleared",
+  "selectedCount": "{count} selected",
+  "@selectedCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "selectAll": "Select all",
+  "selectNone": "Deselect all",
+  "favorite": "Like",
+  "unfavorite": "Remove from liked",
+  "sleepTimer": "Sleep timer",
+  "sleepTimerMinutes": "Stop after {minutes} min",
+  "@sleepTimerMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "sleepTimerOff": "Turn off timer",
+  "cacheDetail": "{size} · {count} tracks",
+  "@cacheDetail": {
+    "placeholders": {
+      "size": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "searchHint": "Songs, albums, artists",
+  "searchEmptyTitle": "Search your library",
+  "searchEmptyBody": "Find songs, albums and artists by name.",
+  "searchNoResults": "Nothing matched \"{query}\"",
+  "@searchNoResults": {
+    "placeholders": {
+      "query": {
+        "type": "String"
+      }
+    }
+  },
+  "localResults": "In your library",
+  "onlineDiscover": "Discover online",
+  "onlineFromAudius": "From Audius",
+  "onlineNoResults": "Nothing found online",
+  "onlineUnavailable": "Online music is unavailable right now",
+  "onlineStreaming": "Streaming",
+  "onlineFromJamendo": "From Jamendo",
+  "jamendoClientId": "Jamendo Client ID",
+  "jamendoClientIdHint": "Free non-commercial ID from devportal.jamendo.com",
+  "jamendoClientIdEmpty": "Not set",
+  "save": "Save",
+  "cancel": "Cancel",
+  "onlineGenreAll": "All",
+  "onlineGenreElectronic": "Electronic",
+  "onlineGenreRock": "Rock",
+  "onlineGenreHipHop": "Hip-hop",
+  "onlineGenreJazz": "Jazz",
+  "onlineGenrePop": "Pop",
+  "onlineGenreClassical": "Classical",
+  "onlineGenreAmbient": "Ambient",
+  "onlineGenreFolk": "Folk",
+  "playlistNew": "New playlist",
+  "playlistCountShort": "{count} playlists",
+  "@playlistCountShort": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "playlistNameHint": "Playlist name",
+  "playlistRename": "Rename",
+  "playlistDelete": "Delete playlist",
+  "playlistDeleteConfirm": "Delete \"{name}\"? This cannot be undone.",
+  "@playlistDeleteConfirm": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "playlistEmptyTitle": "This playlist is empty",
+  "playlistEmptyBody": "Long-press a song in your library to add it here.",
+  "addToPlaylist": "Add to playlist",
+  "addedToPlaylist": "Added to \"{name}\"",
+  "@addedToPlaylist": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "alreadyInPlaylist": "Already in \"{name}\"",
+  "@alreadyInPlaylist": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "removeFromPlaylist": "Remove from playlist",
+  "playAll": "Play all",
+  "create": "Create",
+  "delete": "Delete",
+  "rename": "Rename",
+  "libraryEmptyTitle": "Your library is empty",
+  "libraryEmptyBody": "Add a music folder and Spark will scan it.",
+  "libraryAddFolder": "Add music folder",
+  "libraryScanning": "Scanning…",
+  "musicFolders": "Music folders",
+  "rescanLibrary": "Rescan library",
+  "rescanStarted": "Rescanning your library…",
+  "folderAdded": "Added \"{name}\"",
+  "@folderAdded": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "folderAddFailed": "Could not add that folder.",
+  "folderAlreadyAdded": "That folder is already in your library.",
+  "settingsAudio": "Audio & USB",
+  "settingsAudioSubtitle": "Output path, USB DAC, equalizer",
+  "outputMode": "Output mode",
+  "outputModeAndroid": "Android shared",
+  "outputModeAndroidHint": "Standard Android output. Everything else can mix in.",
+  "outputModeOboe": "Hi-res (Oboe)",
+  "outputModeOboeHint": "Android-managed low-latency path. Not exclusive.",
+  "outputModeUsb": "USB DAC direct",
+  "outputModeUsbHint": "Bit-perfect. Spark claims the DAC and bypasses the Android mixer.",
+  "outputModeUsbNeedsDac": "Connect a USB DAC to use this.",
+  "settingsLanguage": "Language",
+  "settingsLanguageSubtitle": "English or 简体中文",
+  "theme": "Theme",
+  "themeSystem": "Follow system",
+  "themeSystemHint": "Matches your phone's dark or light setting.",
+  "themeDark": "Dark",
+  "themeDarkHint": "Near-black canvas. The original design.",
+  "themeAmoled": "True black",
+  "themeAmoledHint": "Pure black background, easier on OLED battery.",
+  "themeLight": "Light",
+  "themeLightHint": "Light surfaces for bright rooms.",
+  "albumColorMode": "Cover colouring",
+  "albumColorOff": "Off",
+  "albumColorOffHint": "Keep the default gradient.",
+  "albumColorSubtle": "Subtle",
+  "albumColorSubtleHint": "A faint hint of the cover's colour.",
+  "albumColorModerate": "Moderate",
+  "albumColorModerateHint": "Clearly tinted by the cover.",
+  "albumColorVibrant": "Vibrant",
+  "albumColorVibrantHint": "Strong, saturated cover colours.",
+  "settingsAbout": "About",
+  "settingsAboutSubtitle": "Version and licences",
+  "languageEnglish": "English",
+  "languageChinese": "简体中文",
+  "languageSystem": "Follow system",
+  "outputNormalAndroid": "Android shared",
+  "outputUsbDirect": "USB DAC (direct)",
+  "outputUsbDirectUnavailable": "No USB DAC detected",
+  "aboutVersion": "Version",
+  "aboutEngine": "Audio engine",
+  "diagRequestedEngine": "Requested",
+  "diagActualEngine": "Actually using",
+  "diagUsbInterface": "USB interface",
+  "diagUsbStream": "USB stream",
+  "diagFallbackReason": "Fallback reason",
+  "diagClaimed": "claimed",
+  "diagUnclaimed": "not claimed",
+  "diagStable": "stable",
+  "diagUnstable": "unstable",
+  "diagNotFallenBack": "none",
+  "settingsAudioDiagnostics": "AUDIO DIAGNOSTICS"
+}

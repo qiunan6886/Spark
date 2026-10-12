@@ -1,0 +1,274 @@
+{
+  "@@locale": "zh",
+  "appTitle": "Spark",
+  "navHome": "首页",
+  "navLibrary": "曲库",
+  "navSearch": "搜索",
+  "navSettings": "设置",
+  "greeting": "你好",
+  "greeting0": "今天也要好好听歌",
+  "greeting1": "愿音乐陪你一整天",
+  "greeting2": "慢下来，听一首歌",
+  "greeting3": "让旋律替你说话",
+  "greeting4": "好音乐值得等待",
+  "greeting5": "此刻，只属于你",
+  "greeting6": "用耳朵拥抱世界",
+  "greeting7": "每一次播放都是新的开始",
+  "greeting8": "静下心来，听点好的",
+  "greeting9": "音乐是最好的解药",
+  "sectionCurated": "精选推荐",
+  "dailyMix": "每日歌单",
+  "dailyMixSubtitle": "每天换一批 · {count} 首",
+  "@dailyMixSubtitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "forYou": "猜你喜欢",
+  "forYouSubtitle": "根据你的收听 · {count} 首",
+  "@forYouSubtitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "forYouNoHistory": "来自 Audius 和 Jamendo 的推荐",
+  "recentlyPlayed": "最近播放",
+  "sectionNewest": "最新发行",
+  "sectionMostPlayed": "常听的",
+  "filterEmptyTitle": "这里还是空的",
+  "filterEmptyBody": "换个筛选看看，或者先播放几首歌。",
+  "sectionRecentlyAdded": "最近添加",
+  "seeAll": "查看全部",
+  "chipAll": "全部",
+  "chipNewRelease": "新发行",
+  "chipTrending": "热门",
+  "chipFavorites": "喜欢",
+  "songCount": "{count, plural, =0{暂无歌曲} other{{count} 首}}",
+  "@songCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "songCountShort": "{count} 首",
+  "@songCountShort": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "nowPlaying": "正在播放",
+  "queue": "播放队列",
+  "lyrics": "歌词",
+  "lyricsUnavailable": "这首歌暂时没有找到歌词",
+  "myMusic": "我的音乐",
+  "playlists": "歌单",
+  "likedSongs": "我喜欢的",
+  "likedEmptyBody": "点击歌曲上的心形即可收藏到这里。",
+  "downloads": "已下载",
+  "download": "下载",
+  "downloaded": "已保存到音乐文件夹",
+  "downloadCachedOnly": "已缓存，可离线播放",
+  "downloadFailed": "下载失败",
+  "downloadsEmptyTitle": "还没有离线内容",
+  "downloadsEmptyBody": "播放 Audius 或 Jamendo 的歌曲后会自动缓存，可离线收听。",
+  "removeDownload": "删除下载",
+  "refresh": "刷新",
+  "cacheUsage": "已占用 {size}",
+  "@cacheUsage": {
+    "placeholders": {
+      "size": {
+        "type": "String"
+      }
+    }
+  },
+  "cacheSettings": "缓存管理",
+  "cacheLimit": "缓存上限",
+  "cacheUnlimited": "不限",
+  "cacheClear": "清除缓存",
+  "cacheClearConfirm": "清除缓存？已下载到音乐文件夹的文件不受影响。",
+  "cacheCleared": "缓存已清除",
+  "selectedCount": "已选 {count} 首",
+  "@selectedCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "selectAll": "全选",
+  "selectNone": "取消全选",
+  "favorite": "收藏",
+  "unfavorite": "取消收藏",
+  "sleepTimer": "睡眠定时",
+  "sleepTimerMinutes": "{minutes} 分钟后停止",
+  "@sleepTimerMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "sleepTimerOff": "关闭定时",
+  "cacheDetail": "{size} · {count} 首",
+  "@cacheDetail": {
+    "placeholders": {
+      "size": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "searchHint": "歌曲、专辑、艺人",
+  "searchEmptyTitle": "搜索你的曲库",
+  "searchEmptyBody": "按名称查找歌曲、专辑和艺人。",
+  "searchNoResults": "没有找到与「{query}」匹配的内容",
+  "@searchNoResults": {
+    "placeholders": {
+      "query": {
+        "type": "String"
+      }
+    }
+  },
+  "localResults": "本地曲库",
+  "onlineDiscover": "在线推荐",
+  "onlineFromAudius": "来自 Audius",
+  "onlineNoResults": "在线没有找到相关内容",
+  "onlineUnavailable": "在线音乐暂时不可用",
+  "onlineStreaming": "在线播放",
+  "onlineFromJamendo": "来自 Jamendo",
+  "jamendoClientId": "Jamendo Client ID",
+  "jamendoClientIdHint": "在 devportal.jamendo.com 免费申请（非商业）",
+  "jamendoClientIdEmpty": "未设置",
+  "save": "保存",
+  "cancel": "取消",
+  "onlineGenreAll": "全部",
+  "onlineGenreElectronic": "电子",
+  "onlineGenreRock": "摇滚",
+  "onlineGenreHipHop": "嘻哈",
+  "onlineGenreJazz": "爵士",
+  "onlineGenrePop": "流行",
+  "onlineGenreClassical": "古典",
+  "onlineGenreAmbient": "氛围",
+  "onlineGenreFolk": "民谣",
+  "playlistNew": "新建播放列表",
+  "playlistCountShort": "{count} 个歌单",
+  "@playlistCountShort": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "playlistNameHint": "播放列表名称",
+  "playlistRename": "重命名",
+  "playlistDelete": "删除播放列表",
+  "playlistDeleteConfirm": "删除「{name}」？此操作无法撤销。",
+  "@playlistDeleteConfirm": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "playlistEmptyTitle": "这个播放列表还是空的",
+  "playlistEmptyBody": "在曲库中长按歌曲即可添加到这里。",
+  "addToPlaylist": "添加到播放列表",
+  "addedToPlaylist": "已添加到「{name}」",
+  "@addedToPlaylist": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "alreadyInPlaylist": "已在「{name}」中",
+  "@alreadyInPlaylist": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "removeFromPlaylist": "从播放列表移除",
+  "playAll": "播放全部",
+  "create": "创建",
+  "delete": "删除",
+  "rename": "重命名",
+  "libraryEmptyTitle": "曲库还是空的",
+  "libraryEmptyBody": "添加一个音乐文件夹，Spark 会自动扫描。",
+  "libraryAddFolder": "添加音乐文件夹",
+  "libraryScanning": "正在扫描…",
+  "musicFolders": "音乐文件夹",
+  "rescanLibrary": "重新扫描曲库",
+  "rescanStarted": "正在重新扫描曲库…",
+  "folderAdded": "已添加「{name}」",
+  "@folderAdded": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "folderAddFailed": "无法添加该文件夹。",
+  "folderAlreadyAdded": "该文件夹已在曲库中。",
+  "settingsAudio": "音频与 USB",
+  "settingsAudioSubtitle": "输出通路、USB DAC、均衡器",
+  "outputMode": "输出模式",
+  "outputModeAndroid": "Android 共享输出",
+  "outputModeAndroidHint": "标准 Android 输出，其他应用的声音会混入。",
+  "outputModeOboe": "高解析（Oboe）",
+  "outputModeOboeHint": "Android 托管的低延迟通路，并非独占。",
+  "outputModeUsb": "USB DAC 直连",
+  "outputModeUsbHint": "位完美。Spark 会独占 DAC 并绕过 Android 混音器。",
+  "outputModeUsbNeedsDac": "需要接入 USB DAC 才能使用。",
+  "settingsLanguage": "语言",
+  "settingsLanguageSubtitle": "English 或 简体中文",
+  "theme": "主题",
+  "themeSystem": "跟随系统",
+  "themeSystemHint": "跟随手机的深色 / 浅色设置。",
+  "themeDark": "深色",
+  "themeDarkHint": "近黑底色，设计稿的原始外观。",
+  "themeAmoled": "纯黑",
+  "themeAmoledHint": "纯黑背景，OLED 屏幕更省电。",
+  "themeLight": "浅色",
+  "themeLightHint": "浅色背景，适合明亮环境。",
+  "albumColorMode": "专辑配色",
+  "albumColorOff": "关闭",
+  "albumColorOffHint": "保持默认渐变。",
+  "albumColorSubtle": "淡雅",
+  "albumColorSubtleHint": "带一点封面颜色的气息。",
+  "albumColorModerate": "适中",
+  "albumColorModerateHint": "明显受封面颜色影响。",
+  "albumColorVibrant": "鲜艳",
+  "albumColorVibrantHint": "使用封面浓烈的色彩。",
+  "settingsAbout": "关于",
+  "settingsAboutSubtitle": "版本与许可",
+  "languageEnglish": "English",
+  "languageChinese": "简体中文",
+  "languageSystem": "跟随系统",
+  "outputNormalAndroid": "Android 共享输出",
+  "outputUsbDirect": "USB DAC 直连",
+  "outputUsbDirectUnavailable": "未检测到 USB DAC",
+  "aboutVersion": "版本",
+  "aboutEngine": "音频引擎",
+  "diagRequestedEngine": "请求引擎",
+  "diagActualEngine": "实际引擎",
+  "diagUsbInterface": "USB 接口",
+  "diagUsbStream": "USB 数据流",
+  "diagFallbackReason": "回退原因",
+  "diagClaimed": "已占用",
+  "diagUnclaimed": "未占用",
+  "diagStable": "稳定",
+  "diagUnstable": "不稳定",
+  "diagNotFallenBack": "无",
+  "settingsAudioDiagnostics": "音频诊断"
+}

@@ -1,0 +1,20 @@
+# This file configures the analyzer, which statically analyzes Dart code to
+# check for errors, warnings, and lints.
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  exclude:
+    # Generated code -- Isar, json_serializable, freezed, riverpod.
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    # flutter_rust_bridge output. Regenerated from rust/src by flutter_rust_bridge_codegen.
+    - "lib/src/**"
+    - build/**
+    - android/**
+    # cargokit ships its own Dart package with its own pubspec; it is a build
+    # tool, not part of the app, and analysing it here reports its unrelated
+    # dependency issues as if they were ours.
+    - "rust_builder/**"
+
+linter:
+  rules:
