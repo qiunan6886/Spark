@@ -284,5 +284,7 @@
   "pathAndroidLowLatency": "Android low-latency",
   "pathUsbDirect": "USB direct",
   "pathAlsaDirect": "ALSA direct (DAP)",
-  "pathExclusive": "Exclusive output"
+  "pathExclusive": "Exclusive output",
+  "pauseOnDacUnplug": "Pause when the DAC is unplugged",
+  "pauseOnDacUnplugHint": "Stops playback instead of switching to the phone speaker mid-track."
 }

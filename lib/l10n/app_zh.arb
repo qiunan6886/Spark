@@ -276,5 +276,7 @@
   "pathAndroidLowLatency": "Android 低延迟通路",
   "pathUsbDirect": "USB 直推",
   "pathAlsaDirect": "ALSA 直通（DAP）",
-  "pathExclusive": "独占输出"
+  "pathExclusive": "独占输出",
+  "pauseOnDacUnplug": "拔掉 USB DAC 时暂停播放",
+  "pauseOnDacUnplugHint": "暂停播放，而不是中途切到手机扬声器。"
 }

@@ -39,6 +39,7 @@ class SettingsScreen extends ConsumerWidget {
     final themeChoice = ref.watch(themeChoiceProvider);
     final colorMode = ref.watch(albumColorModeProvider);
     final jamendoClientId = ref.watch(jamendoClientIdProvider);
+    final appPreferences = ref.watch(appPreferencesProvider);
 
     return Scaffold(
       backgroundColor: SparkColors.background,
@@ -128,6 +129,18 @@ class SettingsScreen extends ConsumerWidget {
                   subtitle: diagnostics?.isUsbRoute == true
                       ? null
                       : diagnostics?.routeLabel,
+                ),
+                const _Divider(),
+                // Behaviour that already existed but had no way to see or change
+                // it: unplugging the DAC while playing paused the track.
+                _ToggleRow(
+                  icon: LucideIcons.unplug,
+                  title: l10n.pauseOnDacUnplug,
+                  subtitle: l10n.pauseOnDacUnplugHint,
+                  value: appPreferences.pauseOnUsbDacDisconnect,
+                  onChanged: (value) => ref
+                      .read(appPreferencesProvider.notifier)
+                      .setPauseOnUsbDacDisconnect(value),
                 ),
               ],
             ),
@@ -978,6 +991,68 @@ String _pathLabel(BuildContext context, AudioPathManagement path) {
     AudioPathManagement.alsaDirectDap => l10n.pathAlsaDirect,
     AudioPathManagement.managedDirectExclusive => l10n.pathExclusive,
   };
+}
+
+/// A boolean setting, shown as a switch.
+class _ToggleRow extends StatelessWidget {
+  const _ToggleRow({
+    required this.icon,
+    required this.title,
+    required this.value,
+    required this.onChanged,
+    this.subtitle,
+  });
+
+  final IconData icon;
+  final String title;
+  final String? subtitle;
+  final bool value;
+  final ValueChanged<bool> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () => onChanged(!value),
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(16, 12, 8, 12),
+        child: Row(
+          children: [
+            Icon(icon, size: 20, color: SparkColors.textSecondary),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: TextStyle(
+                      fontSize: 15,
+                      color: SparkColors.textPrimary,
+                    ),
+                  ),
+                  if (subtitle != null) ...[
+                    const SizedBox(height: 3),
+                    Text(
+                      subtitle!,
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: SparkColors.textSecondary,
+                      ),
+                    ),
+                  ],
+                ],
+              ),
+            ),
+            Switch(
+              value: value,
+              onChanged: onChanged,
+              activeThumbColor: SparkColors.accent,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
 
 class _ValueRow extends StatelessWidget {

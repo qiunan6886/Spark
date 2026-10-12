@@ -225,4 +225,22 @@ void main() {
     expect(find.text('the Rust engine could not start'), findsOneWidget);
     expect(find.text('some unrelated note'), findsNothing);
   });
+
+  testWidgets('the pause-on-unplug behaviour is visible and on by default', (
+    tester,
+  ) async {
+    // The behaviour existed but was unreachable from the UI, so it was impossible
+    // to discover or change.
+    await _pumpSettings(
+      tester,
+      _diag(
+        selected: AudioEngineType.usbDacExperimental,
+        initialized: AudioEngineType.usbDacExperimental,
+      ),
+    );
+
+    expect(find.text('Pause when the DAC is unplugged'), findsOneWidget);
+    final toggle = tester.widget<Switch>(find.byType(Switch));
+    expect(toggle.value, isTrue);
+  });
 }

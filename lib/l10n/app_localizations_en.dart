@@ -580,4 +580,11 @@ class L10nEn extends L10n {
 
   @override
   String get pathExclusive => 'Exclusive output';
+
+  @override
+  String get pauseOnDacUnplug => 'Pause when the DAC is unplugged';
+
+  @override
+  String get pauseOnDacUnplugHint =>
+      'Stops playback instead of switching to the phone speaker mid-track.';
 }

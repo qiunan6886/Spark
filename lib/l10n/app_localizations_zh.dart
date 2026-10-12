@@ -570,4 +570,10 @@ class L10nZh extends L10n {
 
   @override
   String get pathExclusive => '独占输出';
+
+  @override
+  String get pauseOnDacUnplug => '拔掉 USB DAC 时暂停播放';
+
+  @override
+  String get pauseOnDacUnplugHint => '暂停播放，而不是中途切到手机扬声器。';
 }

@@ -17,6 +17,24 @@ final uac2AvailableProvider = Provider<bool>((ref) {
 
 final uac2DevicesProvider = FutureProvider<List<Uac2DeviceInfo>>((ref) async {
   final service = ref.watch(uac2ServiceProvider);
+
+  // Re-list when a device is attached or detached.
+  //
+  // Without this the future resolved once and was then cached forever, so a DAC
+  // plugged in while the app was running was never noticed: Settings kept
+  // offering USB DAC direct as unavailable. Restarting the app with the DAC
+  // already connected worked, because the first resolution saw it.
+  final attached = service.deviceAttachedEvents.listen(
+    (_) => ref.invalidateSelf(),
+  );
+  final detached = service.deviceDetachedEvents.listen(
+    (_) => ref.invalidateSelf(),
+  );
+  ref.onDispose(() {
+    attached.cancel();
+    detached.cancel();
+  });
+
   return service.listDevices();
 });
 

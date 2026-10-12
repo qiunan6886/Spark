@@ -1152,6 +1152,18 @@ abstract class L10n {
   /// In en, this message translates to:
   /// **'Exclusive output'**
   String get pathExclusive;
+
+  /// No description provided for @pauseOnDacUnplug.
+  ///
+  /// In en, this message translates to:
+  /// **'Pause when the DAC is unplugged'**
+  String get pauseOnDacUnplug;
+
+  /// No description provided for @pauseOnDacUnplugHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Stops playback instead of switching to the phone speaker mid-track.'**
+  String get pauseOnDacUnplugHint;
 }
 
 class _L10nDelegate extends LocalizationsDelegate<L10n> {
