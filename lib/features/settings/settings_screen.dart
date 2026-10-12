@@ -401,7 +401,15 @@ class SettingsScreen extends ConsumerWidget {
     );
 
     if (choice == null) return;
-    await ref.read(uac2PreferencesServiceProvider).setAudioEnginePreference(choice);
+    // Through PlayerService, NOT the preferences service.
+    //
+    // Saving the value on its own changes nothing: `selectedMode` -- the engine
+    // playback actually uses -- is only recomputed at startup and on audio route
+    // changes. PlayerService.setAudioEnginePreference also triggers a route
+    // re-sync, which is what recomputes it. Calling the preferences service
+    // directly here meant all three modes behaved identically: the picker label
+    // moved, the engine did not.
+    await ref.read(playerServiceProvider).setAudioEnginePreference(choice);
     ref.invalidate(audioEnginePreferenceProvider);
   }
 
