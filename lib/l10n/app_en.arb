@@ -278,5 +278,6 @@
   "diagStable": "stable",
   "diagUnstable": "unstable",
   "diagNotFallenBack": "none",
-  "settingsAudioDiagnostics": "AUDIO DIAGNOSTICS"
+  "settingsAudioDiagnostics": "AUDIO DIAGNOSTICS",
+  "outputModeDapExclusive": "DAP native (exclusive)"
 }

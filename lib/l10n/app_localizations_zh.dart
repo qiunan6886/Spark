@@ -552,4 +552,7 @@ class L10nZh extends L10n {
 
   @override
   String get settingsAudioDiagnostics => '音频诊断';
+
+  @override
+  String get outputModeDapExclusive => 'DAP 原生独占';
 }

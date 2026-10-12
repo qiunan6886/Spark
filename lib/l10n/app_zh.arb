@@ -270,5 +270,6 @@
   "diagStable": "稳定",
   "diagUnstable": "不稳定",
   "diagNotFallenBack": "无",
-  "settingsAudioDiagnostics": "音频诊断"
+  "settingsAudioDiagnostics": "音频诊断",
+  "outputModeDapExclusive": "DAP 原生独占"
 }

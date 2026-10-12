@@ -938,8 +938,10 @@ String _engineTypeLabel(BuildContext context, AudioEngineType type) {
     AudioEngineType.normalAndroid => l10n.outputNormalAndroid,
     AudioEngineType.rustOboe => l10n.outputModeOboe,
     AudioEngineType.usbDacExperimental => l10n.outputUsbDirect,
-    // Only reachable on a dedicated player, which this build does not target.
-    AudioEngineType.dapInternalHighRes => l10n.outputModeOboe,
+    // Distinct from rustOboe on purpose: they used to share a label, so the two
+    // were indistinguishable in the diagnostics and any difference between the
+    // requested and actual engine was invisible.
+    AudioEngineType.dapInternalHighRes => l10n.outputModeDapExclusive,
   };
 }
 

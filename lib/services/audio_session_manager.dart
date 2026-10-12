@@ -16,6 +16,33 @@ typedef AudioSessionSwitchHandler = Future<void> Function({
 });
 typedef AudioSessionPlaybackActiveReader = bool Function();
 
+/// The engine to use once no external USB device is in play.
+///
+/// The user's output mode is authoritative here. This decision used to be made
+/// by a "does the device advertise a hi-res internal route?" check that ran
+/// *before* the preference was consulted, and every recent flagship advertises
+/// one -- so picking "Android shared", "Hi-res (Oboe)" or "USB DAC direct"
+/// all resolved to the same engine and the setting looked broken.
+///
+/// The exclusive internal path is reserved for a confirmed DAP ([isConfirmedDap]).
+/// Reporting a >48k internal route is not evidence of one, and taking that path
+/// on an ordinary phone bypasses the Android mixer for no reason.
+AudioEngineType resolveInternalEngine({
+  required AudioEnginePreference preference,
+  required bool isConfirmedDap,
+  required bool dapBitPerfectEnabled,
+}) {
+  if (isConfirmedDap) {
+    return dapBitPerfectEnabled
+        ? AudioEngineType.dapInternalHighRes
+        : AudioEngineType.rustOboe;
+  }
+
+  return preference == AudioEnginePreference.rustOboe
+      ? AudioEngineType.rustOboe
+      : AudioEngineType.normalAndroid;
+}
+
 class AudioSessionManager {
   AudioSessionManager({
     AndroidAudioDeviceService? deviceService,
@@ -342,45 +369,25 @@ class AudioSessionManager {
       return AudioEngineType.usbDacExperimental;
     }
 
-    final supportsHiResInternal =
-        capabilityInfo.capabilities.contains(
-          rust_audio.AudioCapabilityType.hiResInternal,
-        ) ||
-        dapInfo.detected;
-
-    if (supportsHiResInternal) {
-      if (!dapBitPerfectEnabled) {
-        _debugLog(
-          '[Session] Selected RUST_OBOE because Bit-perfect (DAP Internal) is '
-          'disabled. DSP chain will run normally. '
-          '(${capabilityInfo.routeType}/${capabilityInfo.routeLabel ?? 'unknown'}; '
-          'detectedDap=${dapInfo.brand ?? 'none'})',
-        );
-        return AudioEngineType.rustOboe;
-      }
-      _debugLog(
-        '[Session] Selected DAP_INTERNAL_HIGH_RES because Android reports a '
-        'higher-capability internal route '
-        '(${capabilityInfo.routeType}/${capabilityInfo.routeLabel ?? 'unknown'}; '
-        'detectedDap=${dapInfo.brand ?? 'none'})',
-      );
-      return AudioEngineType.dapInternalHighRes;
-    }
-
-    if (audioEnginePreference == AudioEnginePreference.rustOboe) {
-      _debugLog(
-        '[Session] Selected RUST_OBOE because the user prefers the Rust '
-        'Android-managed engine',
-      );
-      return AudioEngineType.rustOboe;
-    }
-
-    _debugLog(
-      '[Session] Defaulting to NORMAL_ANDROID: no USB/DAC/HiRes route '
-      'detected and user engine preference is $audioEnginePreference '
-      '(route=${info.routeLabel ?? info.routeType ?? 'unknown'})',
+    // Only a *confirmed* DAP gets the exclusive internal path.
+    //
+    // This used to also fire on any device that merely advertised a >48k
+    // internal route, which every recent flagship does -- and because the block
+    // returned before the preference was consulted, all three output modes
+    // resolved to the same engine and switching between them did nothing.
+    final resolved = resolveInternalEngine(
+      preference: audioEnginePreference,
+      isConfirmedDap: dapInfo.detected,
+      dapBitPerfectEnabled: dapBitPerfectEnabled,
     );
-    return AudioEngineType.normalAndroid;
+    _debugLog(
+      '[Session] Selected ${resolved.logLabel} for the internal route '
+      '(enginePref=$audioEnginePreference detectedDap=${dapInfo.brand ?? 'none'} '
+      'dapBitPerfect=$dapBitPerfectEnabled '
+      'route=${info.routeLabel ?? info.routeType ?? 'unknown'} '
+      'hiResCapability=${capabilityInfo.capabilities.any((c) => c.name == 'hiResInternal')})',
+    );
+    return resolved;
   }
 
   Future<({bool detected, String? brand})> _detectedAndroidDapInfo() async {

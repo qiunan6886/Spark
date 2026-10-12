@@ -562,4 +562,7 @@ class L10nEn extends L10n {
 
   @override
   String get settingsAudioDiagnostics => 'AUDIO DIAGNOSTICS';
+
+  @override
+  String get outputModeDapExclusive => 'DAP native (exclusive)';
 }

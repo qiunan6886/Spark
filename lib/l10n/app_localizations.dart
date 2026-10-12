@@ -1116,6 +1116,12 @@ abstract class L10n {
   /// In en, this message translates to:
   /// **'AUDIO DIAGNOSTICS'**
   String get settingsAudioDiagnostics;
+
+  /// No description provided for @outputModeDapExclusive.
+  ///
+  /// In en, this message translates to:
+  /// **'DAP native (exclusive)'**
+  String get outputModeDapExclusive;
 }
 
 class _L10nDelegate extends LocalizationsDelegate<L10n> {
