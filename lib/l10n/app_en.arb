@@ -279,5 +279,10 @@
   "diagUnstable": "unstable",
   "diagNotFallenBack": "none",
   "settingsAudioDiagnostics": "AUDIO DIAGNOSTICS",
-  "outputModeDapExclusive": "DAP native (exclusive)"
+  "outputModeDapExclusive": "DAP native (exclusive)",
+  "pathAndroidShared": "Android shared",
+  "pathAndroidLowLatency": "Android low-latency",
+  "pathUsbDirect": "USB direct",
+  "pathAlsaDirect": "ALSA direct (DAP)",
+  "pathExclusive": "Exclusive output"
 }

@@ -565,4 +565,19 @@ class L10nEn extends L10n {
 
   @override
   String get outputModeDapExclusive => 'DAP native (exclusive)';
+
+  @override
+  String get pathAndroidShared => 'Android shared';
+
+  @override
+  String get pathAndroidLowLatency => 'Android low-latency';
+
+  @override
+  String get pathUsbDirect => 'USB direct';
+
+  @override
+  String get pathAlsaDirect => 'ALSA direct (DAP)';
+
+  @override
+  String get pathExclusive => 'Exclusive output';
 }

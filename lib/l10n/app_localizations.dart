@@ -1122,6 +1122,36 @@ abstract class L10n {
   /// In en, this message translates to:
   /// **'DAP native (exclusive)'**
   String get outputModeDapExclusive;
+
+  /// No description provided for @pathAndroidShared.
+  ///
+  /// In en, this message translates to:
+  /// **'Android shared'**
+  String get pathAndroidShared;
+
+  /// No description provided for @pathAndroidLowLatency.
+  ///
+  /// In en, this message translates to:
+  /// **'Android low-latency'**
+  String get pathAndroidLowLatency;
+
+  /// No description provided for @pathUsbDirect.
+  ///
+  /// In en, this message translates to:
+  /// **'USB direct'**
+  String get pathUsbDirect;
+
+  /// No description provided for @pathAlsaDirect.
+  ///
+  /// In en, this message translates to:
+  /// **'ALSA direct (DAP)'**
+  String get pathAlsaDirect;
+
+  /// No description provided for @pathExclusive.
+  ///
+  /// In en, this message translates to:
+  /// **'Exclusive output'**
+  String get pathExclusive;
 }
 
 class _L10nDelegate extends LocalizationsDelegate<L10n> {

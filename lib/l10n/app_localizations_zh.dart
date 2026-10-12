@@ -555,4 +555,19 @@ class L10nZh extends L10n {
 
   @override
   String get outputModeDapExclusive => 'DAP 原生独占';
+
+  @override
+  String get pathAndroidShared => 'Android 共享输出';
+
+  @override
+  String get pathAndroidLowLatency => 'Android 低延迟通路';
+
+  @override
+  String get pathUsbDirect => 'USB 直推';
+
+  @override
+  String get pathAlsaDirect => 'ALSA 直通（DAP）';
+
+  @override
+  String get pathExclusive => '独占输出';
 }

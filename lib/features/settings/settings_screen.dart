@@ -102,7 +102,12 @@ class SettingsScreen extends ConsumerWidget {
                       ? LucideIcons.zap
                       : LucideIcons.audioLines,
                   title: l10n.settingsAudio,
-                  value: _outputLabel(context, diagnostics?.outputStrategyLabel),
+                  // Localized from the enum rather than showing
+                  // `outputStrategyLabel`, which is an English string built in
+                  // the service layer and appeared verbatim in the Chinese UI.
+                  value: diagnostics == null
+                      ? l10n.outputUsbDirectUnavailable
+                      : _pathLabel(context, diagnostics.pathManagement),
                   subtitle: diagnostics == null
                       ? null
                       : '${diagnostics.outputDeviceLabel}'
@@ -203,13 +208,6 @@ class SettingsScreen extends ConsumerWidget {
         ),
       ),
     );
-  }
-
-  static String _outputLabel(BuildContext context, String? strategy) {
-    if (strategy == null || strategy.isEmpty) {
-      return context.l10n.outputUsbDirectUnavailable;
-    }
-    return strategy;
   }
 
   static String _localeLabel(BuildContext context, WidgetRef ref) {
@@ -963,6 +961,22 @@ String _engineTypeLabel(BuildContext context, AudioEngineType type) {
     // were indistinguishable in the diagnostics and any difference between the
     // requested and actual engine was invisible.
     AudioEngineType.dapInternalHighRes => l10n.outputModeDapExclusive,
+  };
+}
+
+/// How the audio path is being managed.
+///
+/// Built from the enum rather than from `outputStrategyLabel`: that is an
+/// English string assembled in the service layer, so it appeared verbatim in
+/// the Chinese UI ("Resampled fallback").
+String _pathLabel(BuildContext context, AudioPathManagement path) {
+  final l10n = context.l10n;
+  return switch (path) {
+    AudioPathManagement.androidManagedShared => l10n.pathAndroidShared,
+    AudioPathManagement.androidManagedLowLatency => l10n.pathAndroidLowLatency,
+    AudioPathManagement.directUsbExperimental => l10n.pathUsbDirect,
+    AudioPathManagement.alsaDirectDap => l10n.pathAlsaDirect,
+    AudioPathManagement.managedDirectExclusive => l10n.pathExclusive,
   };
 }
 
