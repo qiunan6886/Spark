@@ -20,6 +20,8 @@ AudioOutputDiagnostics _diag({
   AudioEngineType? initialized,
   String? fallbackReason,
   String? engineNote,
+  String routeType = 'usb',
+  String routeLabel = 'FiiO',
   bool usbInterfaceClaimed = true,
   bool usbStreamStable = true,
 }) => AudioOutputDiagnostics(
@@ -31,8 +33,8 @@ AudioOutputDiagnostics _diag({
   outputStrategyLabel: 'direct',
   capabilityStateLabel: 'ok',
   backendDescription: 'usb',
-  routeType: 'usb',
-  routeLabel: 'USB',
+  routeType: routeType,
+  routeLabel: routeLabel,
   outputDeviceLabel: 'FiiO',
   isMixerManaged: false,
   audioFocusHeld: true,
@@ -128,6 +130,40 @@ void main() {
 
     expect(find.text('not claimed'), findsOneWidget);
     expect(find.text('unstable'), findsOneWidget);
+  });
+
+  testWidgets('the USB DAC row does not show the phone as if it were a DAC', (
+    tester,
+  ) async {
+    // The route label falls back to the device's product name, so this row used
+    // to read "SM-S9280" -- the phone -- under a USB heading.
+    await _pumpSettings(
+      tester,
+      _diag(
+        selected: AudioEngineType.normalAndroid,
+        initialized: AudioEngineType.normalAndroid,
+        routeType: 'internal',
+        routeLabel: 'SM-S9280',
+      ),
+    );
+
+    expect(find.text('No USB DAC detected'), findsOneWidget);
+  });
+
+  testWidgets('the USB DAC row names the DAC when the route is USB', (
+    tester,
+  ) async {
+    await _pumpSettings(
+      tester,
+      _diag(
+        selected: AudioEngineType.usbDacExperimental,
+        initialized: AudioEngineType.usbDacExperimental,
+        routeType: 'usb',
+        routeLabel: 'DTC 480',
+      ),
+    );
+
+    expect(find.text('DTC 480'), findsWidgets);
   });
 
   testWidgets('nothing initialised yet is not presented as a fallback', (

@@ -112,6 +112,10 @@ class AudioOutputDiagnostics {
   final String routeType;
   final String routeLabel;
   final String outputDeviceLabel;
+
+  /// Whether Android is currently routing to a USB device.
+  bool get isUsbRoute => routeType == 'usb';
+
   final bool isMixerManaged;
   final bool audioFocusHeld;
   final bool directUsbRegistered;

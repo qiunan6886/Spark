@@ -110,10 +110,19 @@ class SettingsScreen extends ConsumerWidget {
                   accent: bitPerfect,
                 ),
                 const _Divider(),
-                _NavRow(
+                _ValueRow(
                   icon: LucideIcons.usb,
                   title: 'USB DAC',
-                  value: diagnostics?.routeLabel ?? '—',
+                  // Only the DAC's own name when the route really is USB. The
+                  // route label falls back to the device's product name, so this
+                  // row used to read "SM-S9280" -- the phone -- under a USB
+                  // heading, which looked like a connected but unnamed DAC.
+                  value: diagnostics?.isUsbRoute == true
+                      ? (diagnostics?.routeLabel ?? '—')
+                      : l10n.outputUsbDirectUnavailable,
+                  subtitle: diagnostics?.isUsbRoute == true
+                      ? null
+                      : diagnostics?.routeLabel,
                 ),
               ],
             ),
