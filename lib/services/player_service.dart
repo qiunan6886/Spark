@@ -2331,6 +2331,7 @@ class PlayerService {
       activeOutputSignature: usesRustDiagnostics ? outputSignature : null,
       verificationReason: verificationReason,
       fallbackReason: _sessionManager.fallbackReason,
+      engineNote: _sessionManager.trackEngineNoteNotifier.value,
       capabilityFlags: capabilityFlags,
       urbTransport: urbTransport,
     );
@@ -3739,9 +3740,20 @@ class PlayerService {
           '[Engine] uncached stream "${song.title}"; using Android player '
           '($reason)',
         );
+        // Deliberate, not a failure: an `https://` URL is not a file on disk,
+        // so the Rust and direct-USB engines cannot open it. Recorded so the
+        // diagnostics can say so instead of showing a bare warning.
+        _sessionManager.noteTrackEngineOverride(
+          'This track is streamed and not cached yet, so it plays through the '
+          'Android player. The selected output mode applies once it is saved.',
+        );
+      } else {
+        _sessionManager.noteTrackEngineOverride(null);
       }
       return resolved;
     }
+
+    _sessionManager.noteTrackEngineOverride(null);
 
     if (desiredEngine != AudioEngineType.usbDacExperimental ||
         !Platform.isAndroid) {

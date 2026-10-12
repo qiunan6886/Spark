@@ -900,6 +900,10 @@ class _AudioDiagnosticsCard extends StatelessWidget {
 
     final initialized = d.initializedMode;
     final fellBack = audioPathFellBack(d);
+    // A deliberate per-track override (an uncached stream) is not a fault, so it
+    // must not raise the same warning as a real fallback.
+    final note = d.engineNote;
+    final isNoteworthy = fellBack && d.fallbackReason == null;
 
     return _Card(
       children: [
@@ -910,14 +914,14 @@ class _AudioDiagnosticsCard extends StatelessWidget {
         ),
         const _Divider(),
         _ValueRow(
-          icon: fellBack ? LucideIcons.triangleAlert : LucideIcons.circleCheck,
+          icon: fellBack
+              ? (isNoteworthy ? LucideIcons.info : LucideIcons.triangleAlert)
+              : LucideIcons.circleCheck,
           title: l10n.diagActualEngine,
           value: initialized == null
               ? '—'
               : _engineTypeLabel(context, initialized),
-          subtitle: fellBack ? d.fallbackReason : null,
-          // Amber when the two disagree, so the difference is visible at a
-          // glance rather than only on reading the labels.
+          subtitle: fellBack ? (d.fallbackReason ?? note) : null,
           accent: !fellBack,
         ),
         const _Divider(),

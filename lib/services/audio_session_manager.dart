@@ -69,6 +69,15 @@ class AudioSessionManager {
     null,
   );
   final ValueNotifier<String?> fallbackReasonNotifier = ValueNotifier(null);
+
+  /// Why the engine in use is not the requested one, when that is a deliberate
+  /// choice for this track rather than a failure.
+  ///
+  /// Distinct from [fallbackReason]: an uncached stream is played by the Android
+  /// player on purpose (neither the Rust engine nor direct USB can open an
+  /// `https://` URL), and presenting that as an error made a working mode
+  /// setting look broken.
+  final ValueNotifier<String?> trackEngineNoteNotifier = ValueNotifier(null);
   final ValueNotifier<rust_audio.AudioCapabilityInfo> capabilityInfoNotifier =
       ValueNotifier(
         const rust_audio.AudioCapabilityInfo(
@@ -166,6 +175,12 @@ class AudioSessionManager {
       selectedModeNotifier.value = fallbackMode;
     }
     _debugLog('[Session] Fallback: ${fallbackReasonNotifier.value}');
+  }
+
+  /// Records a deliberate, non-failure reason for the engine in use.
+  void noteTrackEngineOverride(String? note) {
+    if (trackEngineNoteNotifier.value == note) return;
+    trackEngineNoteNotifier.value = note;
   }
 
   Future<void> suppressExperimentalUsbForCurrentDevice({

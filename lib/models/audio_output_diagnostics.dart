@@ -96,6 +96,7 @@ class AudioOutputDiagnostics {
     required this.activeOutputSignature,
     required this.verificationReason,
     required this.fallbackReason,
+    this.engineNote,
     required this.capabilityFlags,
     this.urbTransport,
   });
@@ -124,6 +125,15 @@ class AudioOutputDiagnostics {
   final String? activeOutputSignature;
   final String? verificationReason;
   final String? fallbackReason;
+
+  /// Why the engine differs from the requested one when that is deliberate for
+  /// this track rather than a failure -- an uncached stream is played by the
+  /// Android player on purpose.
+  ///
+  /// Kept apart from [fallbackReason] so the UI can say "expected" instead of
+  /// raising an error on a mode setting that is working correctly.
+  final String? engineNote;
+
   final AudioCapabilityFlags capabilityFlags;
   final UrbTransportInfo? urbTransport;
 }

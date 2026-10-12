@@ -8,6 +8,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:spark/features/settings/settings_screen.dart';
 import 'package:spark/l10n/app_localizations.dart';
 import 'package:spark/models/audio_engine_type.dart';
@@ -18,6 +19,7 @@ AudioOutputDiagnostics _diag({
   required AudioEngineType selected,
   AudioEngineType? initialized,
   String? fallbackReason,
+  String? engineNote,
   bool usbInterfaceClaimed = true,
   bool usbStreamStable = true,
 }) => AudioOutputDiagnostics(
@@ -45,6 +47,7 @@ AudioOutputDiagnostics _diag({
   activeOutputSignature: null,
   verificationReason: null,
   fallbackReason: fallbackReason,
+  engineNote: engineNote,
   capabilityFlags: const AudioCapabilityFlags(
     supportsExclusiveUsbOwnership: true,
     supportsDirectSampleRateSwitching: true,
@@ -138,5 +141,52 @@ void main() {
     expect(find.text('Requested'), findsOneWidget);
     // The warning must not fire before playback has been attempted.
     expect(find.text('Fallback reason'), findsNothing);
+  });
+
+  testWidgets('a deliberate per-track override is not shown as a failure', (
+    tester,
+  ) async {
+    // An uncached stream is played by the Android player on purpose. Showing
+    // the same warning as a real fallback made a correctly applied output mode
+    // look broken.
+    await _pumpSettings(
+      tester,
+      _diag(
+        selected: AudioEngineType.rustOboe,
+        initialized: AudioEngineType.normalAndroid,
+        engineNote: 'This track is streamed and not cached yet.',
+      ),
+    );
+
+    expect(
+      find.byIcon(LucideIcons.triangleAlert),
+      findsNothing,
+      reason: 'a deliberate override is not a failure',
+    );
+    expect(
+      find.text('This track is streamed and not cached yet.'),
+      findsOneWidget,
+    );
+  });
+
+  testWidgets('a real fallback keeps the warning', (tester) async {
+    await _pumpSettings(
+      tester,
+      _diag(
+        selected: AudioEngineType.rustOboe,
+        initialized: AudioEngineType.normalAndroid,
+        fallbackReason: 'the Rust engine could not start',
+        engineNote: 'some unrelated note',
+      ),
+    );
+
+    expect(
+      find.byIcon(LucideIcons.triangleAlert),
+      findsWidgets,
+      reason: 'a real fallback must keep the warning',
+    );
+    // The failure reason wins over the informational note.
+    expect(find.text('the Rust engine could not start'), findsOneWidget);
+    expect(find.text('some unrelated note'), findsNothing);
   });
 }
